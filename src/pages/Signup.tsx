@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 
 const Signup = () => {
@@ -17,8 +17,8 @@ const Signup = () => {
     // Send the token to your backend for verification
   };
 
-  const handleGoogleLoginFailure = (error: any) => {
-    console.error('Google Login Failed:', error);
+  const handleGoogleLoginFailure = () => {
+    console.error('Google Login Failed');
   };
 
   const handleSubmit = async (e: FormEvent) => {

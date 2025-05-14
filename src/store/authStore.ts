@@ -34,14 +34,16 @@ export const useAuthStore = create<AuthStore>((set) => ({
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 800));
     
-    const user = mockUsers.find(u => u.email === email && u.password === password);
+    const foundUser = mockUsers.find(u => u.email === email && u.password === password);
     
-    if (!user) {
+    if (!foundUser) {
       set({ isLoading: false });
       throw new Error('Invalid email or password');
     }
     
-    const { password: _, ...userWithoutPassword } = user;
+    // Destructure and omit password without declaring unused variable
+    const { id, email: userEmail, name } = foundUser;
+    const userWithoutPassword = { id, email: userEmail, name };
     
     // Store user in localStorage for persistence
     localStorage.setItem('user', JSON.stringify(userWithoutPassword));

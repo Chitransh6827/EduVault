@@ -15,8 +15,8 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-pink-600 to-purple-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <section className="bg-gradient-to-r from-purple-800 to-purple-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="order-2 md:order-1">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
@@ -28,7 +28,7 @@ const Home = () => {
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link
                   to="/signup"
-                  className="px-6 py-3 bg-white text-pink-600 font-medium rounded-lg shadow-md hover:bg-gray-50 transition-colors text-center"
+                  className="px-6 py-3 bg-white text-purple-700 font-medium rounded-lg shadow-md hover:bg-gray-50 transition-colors text-center"
                 >
                   Get Started
                 </Link>
@@ -53,52 +53,52 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Key Features</h2>
-            <p className="mt-4 text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-gray-100">Key Features</h2>
+            <p className="mt-4 text-xl text-gray-400">
               Everything you need to manage your educational resources
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
-                <Upload className="h-6 w-6 text-pink-600" />
+            <div className="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-800">
+              <div className="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center mb-4">
+                <Upload className="h-6 w-6 text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Easy Uploads</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-gray-200">Easy Uploads</h3>
+              <p className="text-gray-400">
                 Upload documents, images, videos, and other resource types with just a few clicks.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <Search className="h-6 w-6 text-blue-600" />
+            <div className="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-800">
+              <div className="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center mb-4">
+                <Search className="h-6 w-6 text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Quick Search</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-gray-200">Quick Search</h3>
+              <p className="text-gray-400">
                 Find exactly what you're looking for with advanced search and filtering capabilities.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <BookOpen className="h-6 w-6 text-green-600" />
+            <div className="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-800">
+              <div className="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center mb-4">
+                <BookOpen className="h-6 w-6 text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Organized Resources</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-gray-200">Organized Resources</h3>
+              <p className="text-gray-400">
                 Keep all your materials neatly categorized by subject, type, and importance.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                <Shield className="h-6 w-6 text-purple-600" />
+            <div className="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-800">
+              <div className="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center mb-4">
+                <Shield className="h-6 w-6 text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Access Control</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-gray-200">Access Control</h3>
+              <p className="text-gray-400">
                 Share resources publicly or keep them private with flexible access permissions.
               </p>
             </div>
@@ -107,11 +107,11 @@ const Home = () => {
       </section>
 
       {/* Featured Resources Section */}
-      <section className="py-16">
+      <section className="py-16 bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Featured Resources</h2>
-            <p className="mt-4 text-xl text-gray-600">
+            <h2 className="text-3xl font-bold text-gray-100">Featured Resources</h2>
+            <p className="mt-4 text-xl text-gray-400">
               Explore top-rated educational materials
             </p>
           </div>
@@ -125,7 +125,7 @@ const Home = () => {
           <div className="mt-12 text-center">
             <Link
               to="/resources"
-              className="px-6 py-3 bg-pink-600 text-white font-medium rounded-lg hover:bg-pink-700 transition-colors"
+              className="px-6 py-3 bg-purple-700 text-white font-medium rounded-lg hover:bg-violet-800 transition-colors"
             >
               View All Resources
             </Link>
@@ -134,7 +134,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gray-900 text-white py-16">
+      <section className="bg-gray-950 text-white py-16 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
@@ -144,7 +144,7 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Link
                 to="/signup"
-                className="px-6 py-3 bg-pink-600 text-white font-medium rounded-lg hover:bg-pink-700 transition-colors text-center"
+                className="px-6 py-3 bg-purple-700 text-white font-medium rounded-lg hover:bg-violet-900 transition-colors text-center"
               >
                 Create Account
               </Link>
