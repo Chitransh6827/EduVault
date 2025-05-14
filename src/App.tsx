@@ -38,6 +38,7 @@ function App() {
             <Route path="signup" element={<Signup />} />
             <Route path="resources" element={<ResourcesPage />} />
             <Route path="resources/:id" element={<ResourceDetails />} />
+            <Route path="/verify-email" element={<OTPVerification />} />
             <Route 
               path="upload" 
               element={
@@ -58,7 +59,6 @@ function App() {
           </Route>
         </Routes>
       </Router>
-      <OTPVerification />
     </GoogleOAuthProvider>
   );
 }
