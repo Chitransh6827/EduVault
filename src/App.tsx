@@ -1,0 +1,66 @@
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { useAuthStore } from './store/authStore';
+
+// Pages
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import ResourcesPage from './pages/ResourcesPage';
+import ResourceDetails from './pages/ResourceDetails';
+import UploadResource from './pages/UploadResource';
+import ManageResources from './pages/ManageResources';
+import NotFound from './pages/NotFound';
+
+// Components
+import Layout from './components/Layout';
+import ProtectedRoute from './components/ProtectedRoute';
+import OTPVerification from './components/OTPVerification';
+
+
+function App() {
+  const { checkAuth } = useAuthStore();
+  const clientId = import.meta.env.CLIENTID as string; // Replace with your Google Client ID
+  
+  // Check for existing authentication on app load
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+  
+  return (
+    <GoogleOAuthProvider clientId={clientId}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="resources" element={<ResourcesPage />} />
+            <Route path="resources/:id" element={<ResourceDetails />} />
+            <Route 
+              path="upload" 
+              element={
+                <ProtectedRoute>
+                  <UploadResource />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="manage" 
+              element={
+                <ProtectedRoute>
+                  <ManageResources />
+                </ProtectedRoute>
+              } 
+            />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Router>
+      <OTPVerification />
+    </GoogleOAuthProvider>
+  );
+}
+
+export default App;
