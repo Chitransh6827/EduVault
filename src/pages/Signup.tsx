@@ -12,9 +12,28 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const handleGoogleLoginSuccess = (response: any) => {
+  const handleGoogleLoginSuccess = async (response: any) => {
     console.log('Google Login Success:', response);
-    // Send the token to your backend for verification
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/google', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: response.credential }),
+      });
+  
+      const data = await res.json();
+      if (res.ok) {
+        console.log('Login successful:', data);
+        // Save the token in localStorage or cookies
+        localStorage.setItem('authToken', data.token);
+        // Redirect the user to the dashboard or resources page
+        navigate('/resources');
+      } else {
+        console.error('Login failed:', data.message);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
   };
 
   const handleGoogleLoginFailure = () => {
@@ -96,6 +115,7 @@ const Signup = () => {
           <GoogleLogin
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginFailure}
+            useOneTap
           />
         </div>
       </div>
