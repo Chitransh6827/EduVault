@@ -21,8 +21,12 @@ import OTPVerification from './components/OTPVerification';
 
 function App() {
   const { checkAuth } = useAuthStore();
+<<<<<<< HEAD
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string; // Replace with your Google Client ID
   console.log('Google Client ID:', clientId); // Debugging the client ID
+=======
+  const clientId = import.meta.env.REACT_APP_GOOGLE_CLIENT_ID as string; // Replace with your Google Client ID
+>>>>>>> 3a97da6ad86f376edb7c6d78d5342776ca4250f7
   
   // Check for existing authentication on app load
   useEffect(() => {
