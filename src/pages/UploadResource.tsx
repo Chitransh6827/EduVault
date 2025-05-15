@@ -4,6 +4,7 @@ import { Upload, ArrowLeft, FileText, Image, Video, Link as LinkIcon, File } fro
 import { useResourceStore } from '../store/resourceStore';
 import { useAuthStore } from '../store/authStore';
 import { ResourceCategory, ResourceType, AccessPermission } from '../types';
+import axios from 'axios';
 
 type FormData = {
   title: string;
@@ -127,7 +128,12 @@ const UploadResource = () => {
   // Form submission
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+    try{
+      await axios.post('https://localhost:5000/resources/create', formData);
+    }
+    catch (error) {
+      console.error('Error uploading resource:', error);
+    }
     if (!validateForm()) {
       return;
     }
