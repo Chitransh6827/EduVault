@@ -38,7 +38,11 @@ function App() {
             <Route path="signup" element={<Signup />} />
             <Route path="resources" element={<ResourcesPage />} />
             <Route path="resources/:id" element={<ResourceDetails />} />
-            <Route path="/verify-email" element={<OTPVerification />} />
+            <Route path="/verify-email" element={<OTPVerification 
+              email=""
+              onVerify={(otp) => console.log('Verify OTP:', otp)}
+              onResend={() => console.log('Resend OTP')}
+            />} />
             <Route 
               path="upload" 
               element={
