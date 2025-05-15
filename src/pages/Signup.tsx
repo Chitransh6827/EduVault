@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
+import { UserPlus } from 'lucide-react';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -67,58 +68,117 @@ const Signup = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 px-4 sm:px-0">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className='flex items-center justify-center min-h-screen bg-gray-900'>
+      <div className="max-w-md mx-auto mt-16 px-4 pb-10 sm:px-0">
+      <div className="bg-gray-950 rounded-lg shadow-xl border border-gray-800 overflow-hidden">
         <div className="px-6 py-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Sign Up</h2>
-          {error && <div className="text-red-500 mb-4">{error}</div>}
+          <div className="text-center mb-8">
+            <div className="w-12 h-12 bg-slate-950 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <UserPlus className="h-6 w-6 text-purple-400" />
+            </div>
+            <h2 className="mt-4 text-3xl font-bold text-gray-100">Create Account</h2>
+            <p className="mt-2 text-gray-400 text-lg">
+              Join EduVault to start managing your resources
+            </p>
+          </div>
+
+          {error && (
+            <div className="mb-4 p-3 bg-red-900/50 text-red-200 border border-red-800 rounded-md text-sm">
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full mb-4 px-3 py-2 border rounded"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full mb-4 px-3 py-2 border rounded"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full mb-4 px-3 py-2 border rounded"
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full mb-4 px-3 py-2 border rounded"
-            />
+            <div className="mb-4">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                Name
+              </label>
+              <input
+                id="name"
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-3 py-2 bg-gray-900 border border-gray-800 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-500"
+                placeholder="John Doe"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3 py-2 bg-gray-900 border border-gray-800 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-500"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3 py-2 bg-gray-900 border border-gray-800 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-500"
+                placeholder="•••••••••"
+              />
+            </div>
+
+            <div className="mb-6">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-1">
+                Confirm Password
+              </label>
+              <input
+                id="confirmPassword"
+                type="password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full px-3 py-2 bg-gray-900 border border-gray-800 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-500"
+                placeholder="•••••••••"
+              />
+            </div>
+
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded"
               disabled={isLoading}
+              className="w-full px-6 py-3 bg-purple-700 text-white font-medium rounded-lg hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {isLoading ? 'Signing Up...' : 'Sign Up'}
+              {isLoading ? 'Creating Account...' : 'Create Account'}
             </button>
           </form>
         </div>
-        <div className="px-6 py-4 bg-gray-100 text-center">
-          <p>Or sign up with:</p>
-          <GoogleLogin
-            onSuccess={handleGoogleLoginSuccess}
-            onError={handleGoogleLoginFailure}
-            useOneTap
-          />
+
+        <div className="px-6 py-4 bg-slate-950 border-t border-gray-800">
+          <p className="text-sm text-center text-gray-400 mb-4">
+            Already have an account?{' '}
+            <Link to="/login" className="font-medium text-purple-400 hover:text-purple-300">
+              Sign in
+            </Link>
+          </p>
+          <div className="flex justify-center">
+            <GoogleLogin
+              onSuccess={handleGoogleLoginSuccess}
+              onError={handleGoogleLoginFailure}
+              useOneTap
+              theme="filled_black"
+              size="large"
+              shape="rectangular"
+            />
+          </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

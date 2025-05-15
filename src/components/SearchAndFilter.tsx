@@ -81,20 +81,24 @@ const SearchAndFilter = ({ onSearch, onCategoryChange }: SearchAndFilterProps) =
   };
   
   return (
-    <div className="bg-white p-4 rounded-lg shadow-sm mb-6">
+    <div className="bg-gray-900/50 p-4 rounded-lg shadow-lg border border-gray-800 mb-6 backdrop-blur-sm">
       <div className="flex flex-col md:flex-row gap-4">
         <form onSubmit={handleSearch} className="flex-grow">
           <div className="relative">
             <input
               type="text"
               placeholder="Search resources..."
-              className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+              className="w-full bg-slate-950 px-4 py-2 pr-10 border border-gray-700 rounded-lg 
+                text-gray-200 placeholder-gray-500
+                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent
+                transition-colors"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button
               type="submit"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-pink-600"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 
+                text-gray-400 hover:text-purple-400 transition-colors"
             >
               <Search className="h-5 w-5" />
             </button>
@@ -103,21 +107,39 @@ const SearchAndFilter = ({ onSearch, onCategoryChange }: SearchAndFilterProps) =
         
         <div className="w-full md:w-64">
           <div className="relative">
-            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
+            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 
+              text-gray-400" />
             <select
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 bg-slate-950 border border-gray-700 rounded-lg 
+                text-gray-200 appearance-none
+                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent
+                transition-colors"
               value={category}
               onChange={handleCategoryChange}
             >
               {categoryOptions.map((option) => (
-                <option key={option.value} value={option.value}>
+                <option 
+                  key={option.value} 
+                  value={option.value}
+                  className="bg-gray-900 text-gray-200"
+                >
                   {option.label}
                 </option>
               ))}
             </select>
             <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-              <svg className="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              <svg 
+                className="h-4 w-4 text-gray-400" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth="2" 
+                  d="M19 9l-7 7-7-7" 
+                />
               </svg>
             </div>
           </div>

@@ -21,33 +21,33 @@ const ResourceCard = ({ resource, onDelete, showActions = false }: ResourceCardP
   
   return (
     <div 
-      className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+      className="bg-gray-900 rounded-lg border border-gray-800 shadow-xl hover:shadow-purple-900/20 overflow-hidden transition-all duration-300 hover:-translate-y-1"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative h-48 bg-gray-200">
+      <div className="relative h-48 bg-gray-800">
         <img 
           src={thumbnailUrl} 
           alt={resource.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
         />
-        <div className="absolute top-2 right-2 bg-white px-2 py-1 rounded-full text-xs font-medium">
+        <div className="absolute top-2 right-2 bg-gray-900 px-2 py-1 rounded-full text-xs font-medium text-purple-400 border border-gray-800">
           {resource.category}
         </div>
-        <div className="absolute bottom-2 left-2 flex items-center bg-black bg-opacity-60 text-white px-2 py-1 rounded-full text-xs">
-          <Star className="h-3 w-3 text-yellow-400 mr-1" />
+        <div className="absolute bottom-2 left-2 flex items-center bg-gray-900/90 text-gray-200 px-2 py-1 rounded-full text-xs border border-gray-800">
+          <Star className="h-3 w-3 text-purple-400 mr-1" />
           <span>{resource.rating} ({resource.ratingsCount})</span>
         </div>
         {resource.accessPermission === 'private' && (
-          <div className="absolute bottom-2 right-2 bg-gray-800 text-white px-2 py-1 rounded-full text-xs">
+          <div className="absolute bottom-2 right-2 bg-gray-900/90 text-gray-200 px-2 py-1 rounded-full text-xs border border-gray-800">
             Private
           </div>
         )}
       </div>
       
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 truncate">{resource.title}</h3>
-        <p className="text-sm text-gray-600 mt-1 line-clamp-2">{resource.description}</p>
+        <h3 className="text-lg font-semibold text-gray-100 truncate">{resource.title}</h3>
+        <p className="text-sm text-gray-400 mt-1 line-clamp-2">{resource.description}</p>
         
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xs text-gray-500">
@@ -57,7 +57,7 @@ const ResourceCard = ({ resource, onDelete, showActions = false }: ResourceCardP
           <div className="flex space-x-2">
             <Link 
               to={`/resources/${resource.id}`}
-              className="px-3 py-1 text-xs font-medium text-pink-600 hover:text-pink-700 flex items-center"
+              className="px-3 py-1 text-xs font-medium text-purple-400 hover:text-purple-300 flex items-center"
             >
               <Eye className="h-3 w-3 mr-1" /> View
             </Link>
@@ -66,14 +66,14 @@ const ResourceCard = ({ resource, onDelete, showActions = false }: ResourceCardP
               <>
                 <Link 
                   to={`/upload?edit=${resource.id}`}
-                  className="px-3 py-1 text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center"
+                  className="px-3 py-1 text-xs font-medium text-blue-400 hover:text-blue-300 flex items-center"
                 >
                   <Edit className="h-3 w-3 mr-1" /> Edit
                 </Link>
                 
                 <button
                   onClick={() => onDelete && onDelete(resource.id)}
-                  className="px-3 py-1 text-xs font-medium text-red-600 hover:text-red-700 flex items-center"
+                  className="px-3 py-1 text-xs font-medium text-red-400 hover:text-red-300 flex items-center"
                 >
                   <Trash2 className="h-3 w-3 mr-1" /> Delete
                 </button>

@@ -186,262 +186,264 @@ const UploadResource = () => {
   };
   
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Back Link */}
-      <button
-        onClick={() => navigate(-1)}
-        className="inline-flex items-center text-sm text-gray-600 hover:text-pink-600 mb-6"
-      >
-        <ArrowLeft className="h-4 w-4 mr-1" /> Back
-      </button>
-      
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="p-6">
-          <div className="flex items-center mb-6">
-            <Upload className="h-6 w-6 text-pink-600 mr-2" />
-            <h1 className="text-2xl font-bold text-gray-900">
-              {isEditMode ? 'Edit Resource' : 'Upload New Resource'}
-            </h1>
-          </div>
-          
-          <form onSubmit={handleSubmit}>
-            {/* Title */}
-            <div className="mb-4">
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                Title *
-              </label>
-              <input
-                id="title"
-                name="title"
-                type="text"
-                required
-                value={formData.title}
-                onChange={handleChange}
-                className={`w-full px-3 py-2 border ${
-                  errors.title ? 'border-red-500' : 'border-gray-300'
-                } rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500`}
-                placeholder="Enter resource title"
-              />
-              {errors.title && (
-                <p className="mt-1 text-sm text-red-500">{errors.title}</p>
-              )}
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-950 to-slate-950">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Back Link */}
+        <button
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center text-sm text-gray-400 hover:text-purple-400 transition-colors mb-6"
+        >
+          <ArrowLeft className="h-4 w-4 mr-1" /> Back
+        </button>
+        
+        <div className="bg-gray-900 rounded-lg shadow-xl border border-gray-800 overflow-hidden">
+          <div className="p-6">
+            <div className="flex items-center mb-6">
+              <Upload className="h-6 w-6 text-purple-400 mr-2" />
+              <h1 className="text-2xl font-bold text-gray-100">
+                {isEditMode ? 'Edit Resource' : 'Upload New Resource'}
+              </h1>
             </div>
             
-            {/* Description */}
-            <div className="mb-4">
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-                Description *
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                rows={4}
-                required
-                value={formData.description}
-                onChange={handleChange}
-                className={`w-full px-3 py-2 border ${
-                  errors.description ? 'border-red-500' : 'border-gray-300'
-                } rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500`}
-                placeholder="Enter resource description"
-              />
-              {errors.description && (
-                <p className="mt-1 text-sm text-red-500">{errors.description}</p>
-              )}
-            </div>
-            
-            {/* Category and Resource Type */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div>
-                <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
-                  Category *
+            <form onSubmit={handleSubmit}>
+              {/* Title */}
+              <div className="mb-4">
+                <label htmlFor="title" className="block text-sm font-medium text-gray-300 mb-1">
+                  Title *
                 </label>
-                <select
-                  id="category"
-                  name="category"
-                  value={formData.category}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500"
-                >
-                  <option value="Mathematics">Mathematics</option>
-                  <option value="Science">Science</option>
-                  <option value="Literature">Literature</option>
-                  <option value="History">History</option>
-                  <option value="Computer Science">Computer Science</option>
-                  <option value="Art">Art</option>
-                  <option value="Music">Music</option>
-                  <option value="Languages">Languages</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              
-              <div>
-                <label htmlFor="resourceType" className="block text-sm font-medium text-gray-700 mb-1">
-                  Resource Type *
-                </label>
-                <select
-                  id="resourceType"
-                  name="resourceType"
-                  value={formData.resourceType}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-pink-500 focus:border-pink-500"
-                >
-                  <option value="Document">Document</option>
-                  <option value="Image">Image</option>
-                  <option value="Video">Video</option>
-                  <option value="Audio">Audio</option>
-                  <option value="Link">Link</option>
-                </select>
-              </div>
-            </div>
-            
-            {/* Access Permissions */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Access Permission *
-              </label>
-              <div className="flex items-center space-x-4">
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    name="accessPermission"
-                    value="public"
-                    checked={formData.accessPermission === 'public'}
-                    onChange={handleChange}
-                    className="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-300"
-                  />
-                  <span className="ml-2 text-sm text-gray-700">Public</span>
-                </label>
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    name="accessPermission"
-                    value="private"
-                    checked={formData.accessPermission === 'private'}
-                    onChange={handleChange}
-                    className="focus:ring-pink-500 h-4 w-4 text-pink-600 border-gray-300"
-                  />
-                  <span className="ml-2 text-sm text-gray-700">Private</span>
-                </label>
-              </div>
-              <p className="mt-1 text-xs text-gray-500">
-                {formData.accessPermission === 'public' 
-                  ? 'Anyone can view this resource' 
-                  : 'Only you can view this resource'}
-              </p>
-            </div>
-            
-            {/* File Upload */}
-            <div className="mb-6">
-              <label htmlFor="file" className="block text-sm font-medium text-gray-700 mb-2">
-                Upload File
-              </label>
-              <div className={`border-2 border-dashed ${
-                errors.file ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-gray-50'
-              } rounded-lg p-6 text-center`}>
                 <input
-                  id="file"
-                  name="file"
-                  type="file"
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-                <label htmlFor="file" className="cursor-pointer">
-                  <div className="flex flex-col items-center justify-center">
-                    {(() => {
-                      switch (formData.resourceType) {
-                        case 'Document':
-                          return <FileText className="h-10 w-10 text-gray-400" />;
-                        case 'Image':
-                          return <Image className="h-10 w-10 text-gray-400" />;
-                        case 'Video':
-                          return <Video className="h-10 w-10 text-gray-400" />;
-                        case 'Link':
-                          return <LinkIcon className="h-10 w-10 text-gray-400" />;
-                        default:
-                          return <File className="h-10 w-10 text-gray-400" />;
-                      }
-                    })()}
-                    
-                    <p className="mt-2 text-sm text-gray-600">
-                      {formData.file ? formData.file.name : 'Drag and drop a file, or click to select'}
-                    </p>
-                    <p className="mt-1 text-xs text-gray-500">
-                      {formData.resourceType === 'Document' && 'PDF, DOCX, TXT up to 10MB'}
-                      {formData.resourceType === 'Image' && 'JPG, PNG, GIF up to 5MB'}
-                      {formData.resourceType === 'Video' && 'MP4, MOV up to 50MB'}
-                      {formData.resourceType === 'Audio' && 'MP3, WAV up to 10MB'}
-                    </p>
-                  </div>
-                </label>
-              </div>
-              {errors.file && (
-                <p className="mt-1 text-sm text-red-500">{errors.file}</p>
-              )}
-            </div>
-            
-            {/* Resource Links */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Resource Links
-              </label>
-              
-              <div className="space-y-2 mb-2">
-                {formData.links.filter(Boolean).map((link, index) => (
-                  <div key={index} className="flex items-center">
-                    <input
-                      type="text"
-                      value={link}
-                      readOnly
-                      className="flex-grow px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveLink(index)}
-                      className="ml-2 text-gray-500 hover:text-red-600"
-                    >
-                      <span className="sr-only">Remove</span>
-                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="flex">
-                <input
+                  id="title"
+                  name="title"
                   type="text"
-                  value={currentLink}
-                  onChange={(e) => setCurrentLink(e.target.value)}
-                  className="flex-grow px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-pink-500 focus:border-pink-500"
-                  placeholder="https://example.com/resource"
+                  required
+                  value={formData.title}
+                  onChange={handleChange}
+                  className={`w-full px-3 py-2 bg-slate-950 border ${
+                    errors.title ? 'border-red-500' : 'border-gray-700'
+                  } rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
+                  placeholder="Enter resource title"
                 />
+                {errors.title && (
+                  <p className="mt-1 text-sm text-red-400">{errors.title}</p>
+                )}
+              </div>
+              
+              {/* Description */}
+              <div className="mb-4">
+                <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-1">
+                  Description *
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows={4}
+                  required
+                  value={formData.description}
+                  onChange={handleChange}
+                  className={`w-full px-3 resize-none py-2 bg-slate-950 border ${
+                    errors.description ? 'border-purple-700' : 'border-gray-700'
+                  } rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
+                  placeholder="Enter resource description"
+                />
+                {errors.description && (
+                  <p className="mt-1 text-sm text-red-400">{errors.description}</p>
+                )}
+              </div>
+              
+              {/* Category and Resource Type */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label htmlFor="category" className="block text-sm font-medium text-gray-300 mb-1">
+                    Category *
+                  </label>
+                  <select
+                    id="category"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 bg-slate-950 border border-gray-700 rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  >
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="Literature">Literature</option>
+                    <option value="History">History</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Art">Art</option>
+                    <option value="Music">Music</option>
+                    <option value="Languages">Languages</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label htmlFor="resourceType" className="block text-sm font-medium text-gray-300 mb-1">
+                    Resource Type *
+                  </label>
+                  <select
+                    id="resourceType"
+                    name="resourceType"
+                    value={formData.resourceType}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 bg-slate-950 border border-gray-700 rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  >
+                    <option value="Document">Document</option>
+                    <option value="Image">Image</option>
+                    <option value="Video">Video</option>
+                    <option value="Audio">Audio</option>
+                    <option value="Link">Link</option>
+                  </select>
+                </div>
+              </div>
+              
+              {/* Access Permissions */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Access Permission *
+                </label>
+                <div className="flex items-center space-x-4">
+                  <label className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      name="accessPermission"
+                      value="public"
+                      checked={formData.accessPermission === 'public'}
+                      onChange={handleChange}
+                      className="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-700 bg-slate-950"
+                    />
+                    <span className="ml-2 text-sm text-gray-300">Public</span>
+                  </label>
+                  <label className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      name="accessPermission"
+                      value="private"
+                      checked={formData.accessPermission === 'private'}
+                      onChange={handleChange}
+                      className="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-700 bg-slate-950"
+                    />
+                    <span className="ml-2 text-sm text-gray-300">Private</span>
+                  </label>
+                </div>
+                <p className="mt-1 text-xs text-gray-500">
+                  {formData.accessPermission === 'public' 
+                    ? 'Anyone can view this resource' 
+                    : 'Only you can view this resource'}
+                </p>
+              </div>
+              
+              {/* File Upload */}
+              <div className="mb-6">
+                <label htmlFor="file" className="block text-sm font-medium text-gray-300 mb-2">
+                  Upload File
+                </label>
+                <div className={`border-2 border-dashed ${
+                  errors.file ? 'border-red-500 bg-red-900/20' : 'border-gray-700 bg-slate-950'
+                } rounded-lg p-6 text-center`}>
+                  <input
+                    id="file"
+                    name="file"
+                    type="file"
+                    onChange={handleFileChange}
+                    className="hidden"
+                  />
+                  <label htmlFor="file" className="cursor-pointer">
+                    <div className="flex flex-col items-center justify-center">
+                      {(() => {
+                        switch (formData.resourceType) {
+                          case 'Document':
+                            return <FileText className="h-10 w-10 text-gray-400" />;
+                          case 'Image':
+                            return <Image className="h-10 w-10 text-gray-400" />;
+                          case 'Video':
+                            return <Video className="h-10 w-10 text-gray-400" />;
+                          case 'Link':
+                            return <LinkIcon className="h-10 w-10 text-gray-400" />;
+                          default:
+                            return <File className="h-10 w-10 text-gray-400" />;
+                        }
+                      })()}
+                      
+                      <p className="mt-2 text-sm text-gray-400">
+                        {formData.file ? formData.file.name : 'Drag and drop a file, or click to select'}
+                      </p>
+                      <p className="mt-1 text-xs text-gray-500">
+                        {formData.resourceType === 'Document' && 'PDF, DOCX, TXT up to 10MB'}
+                        {formData.resourceType === 'Image' && 'JPG, PNG, GIF up to 5MB'}
+                        {formData.resourceType === 'Video' && 'MP4, MOV up to 50MB'}
+                        {formData.resourceType === 'Audio' && 'MP3, WAV up to 10MB'}
+                      </p>
+                    </div>
+                  </label>
+                </div>
+                {errors.file && (
+                  <p className="mt-1 text-sm text-red-400">{errors.file}</p>
+                )}
+              </div>
+              
+              {/* Resource Links */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Resource Links
+                </label>
+                
+                <div className="space-y-2 mb-2">
+                  {formData.links.filter(Boolean).map((link, index) => (
+                    <div key={index} className="flex items-center">
+                      <input
+                        type="text"
+                        value={link}
+                        readOnly
+                        className="flex-grow px-3 py-2 bg-slate-950 border border-gray-700 rounded-md text-gray-200"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveLink(index)}
+                        className="ml-2 text-gray-400 hover:text-red-400 transition-colors"
+                      >
+                        <span className="sr-only">Remove</span>
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="flex">
+                  <input
+                    type="text"
+                    value={currentLink}
+                    onChange={(e) => setCurrentLink(e.target.value)}
+                    className="flex-grow px-3 py-2 bg-slate-950 border border-gray-700 rounded-l-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="https://example.com/resource"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddLink}
+                    className="px-4 py-2 bg-gray-800 text-gray-300 border border-gray-700 border-l-0 rounded-r-md hover:bg-gray-700 transition-colors"
+                  >
+                    Add
+                  </button>
+                </div>
+                <p className="mt-1 text-xs text-gray-500">
+                  Add links to external resources or references
+                </p>
+              </div>
+              
+              {/* Submit Button */}
+              <div className="flex justify-end">
                 <button
-                  type="button"
-                  onClick={handleAddLink}
-                  className="px-4 py-2 bg-gray-100 text-gray-700 border border-gray-300 border-l-0 rounded-r-md hover:bg-gray-200"
+                  type="submit"
+                  disabled={isLoading}
+                  className="px-6 py-2 bg-purple-700 text-white font-medium rounded-lg hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  Add
+                  {isLoading 
+                    ? (isEditMode ? 'Updating...' : 'Uploading...') 
+                    : (isEditMode ? 'Update Resource' : 'Upload Resource')}
                 </button>
               </div>
-              <p className="mt-1 text-xs text-gray-500">
-                Add links to external resources or references
-              </p>
-            </div>
-            
-            {/* Submit Button */}
-            <div className="flex justify-end">
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="px-6 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:opacity-50"
-              >
-                {isLoading 
-                  ? (isEditMode ? 'Updating...' : 'Uploading...') 
-                  : (isEditMode ? 'Update Resource' : 'Upload Resource')}
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
