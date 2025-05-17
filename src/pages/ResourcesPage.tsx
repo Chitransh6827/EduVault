@@ -1,26 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useResourceStore } from '../store/resourceStore';
 import { ResourceCategory } from '../types';
 import SearchAndFilter from '../components/SearchAndFilter';
 import ResourceGrid from '../components/ResourceGrid';
 
 const ResourcesPage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState<ResourceCategory | 'All'>('All');
-  
   const { setSearchTerm: storeSetSearchTerm, setCategoryFilter: storeSetCategoryFilter, filteredResources } = useResourceStore();
   
-  const location = useLocation();
   
   // Handle search and filtering
   const handleSearch = (term: string) => {
-    setSearchTerm(term);
     storeSetSearchTerm(term);
   };
   
   const handleCategoryChange = (category: ResourceCategory | 'All') => {
-    setCategoryFilter(category);
     storeSetCategoryFilter(category);
   };
   

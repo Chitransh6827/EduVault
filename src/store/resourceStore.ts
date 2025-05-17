@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { Resource, ResourceCategory, AccessPermission, ResourceType } from '../types';
+import create from 'zustand';
+import { Resource, ResourceCategory } from '../types';
 
 // Mock image URLs from Pexels
 const MOCK_IMAGES = [
@@ -16,56 +16,6 @@ const MOCK_IMAGES = [
 ];
 
 // Subject-related keywords for better search
-const SUBJECT_KEYWORDS: Record<ResourceCategory, string[]> = {
-  Mathematics: [
-    'math', 'algebra', 'calculus', 'geometry', 'statistics', 'trigonometry',
-    'arithmetic', 'equations', 'mathematical', 'numbers', 'probability',
-    'linear algebra', 'differential equations', 'discrete math', 'vectors'
-  ],
-  Science: [
-    'physics', 'chemistry', 'biology', 'astronomy', 'geology', 'lab',
-    'experiment', 'scientific', 'quantum', 'theory', 'hypothesis',
-    'organic chemistry', 'inorganic', 'molecular', 'genetics', 'evolution',
-    'thermodynamics', 'mechanics', 'electricity', 'magnetism', 'waves'
-  ],
-  Literature: [
-    'english', 'poetry', 'novel', 'grammar', 'writing', 'reading',
-    'shakespeare', 'essay', 'literary', 'prose', 'narrative',
-    'fiction', 'non-fiction', 'drama', 'short story', 'analysis',
-    'composition', 'creative writing', 'rhetoric', 'criticism'
-  ],
-  History: [
-    'world war', 'ancient', 'civilization', 'revolution', 'empire',
-    'medieval', 'modern', 'historical', 'century', 'era', 'dynasty',
-    'archaeology', 'artifacts', 'cultural', 'social', 'political',
-    'economic', 'military', 'diplomatic', 'renaissance'
-  ],
-  'Computer Science': [
-    'programming', 'coding', 'algorithm', 'database', 'web', 'software',
-    'development', 'computer', 'data structures', 'javascript', 'python',
-    'java', 'c++', 'react', 'angular', 'node.js', 'machine learning',
-    'artificial intelligence', 'cybersecurity', 'networking'
-  ],
-  Art: [
-    'drawing', 'painting', 'sculpture', 'design', 'creative', 'visual',
-    'artistic', 'illustration', 'color', 'composition', 'sketch',
-    'digital art', 'photography', 'ceramics', 'printmaking', 'art history',
-    'contemporary art', 'modern art', 'mixed media', 'installation'
-  ],
-  Music: [
-    'instrument', 'theory', 'composition', 'rhythm', 'melody', 'harmony',
-    'musical', 'song', 'notes', 'scale', 'chord', 'orchestra',
-    'band', 'jazz', 'classical', 'contemporary', 'music history',
-    'music production', 'recording', 'sound design'
-  ],
-  Languages: [
-    'spanish', 'french', 'german', 'chinese', 'japanese', 'grammar',
-    'vocabulary', 'linguistic', 'translation', 'pronunciation',
-    'italian', 'russian', 'arabic', 'korean', 'portuguese',
-    'language learning', 'phonetics', 'syntax', 'semantics'
-  ],
-  Other: []
-};
 
 // Initial resource data with enhanced descriptions for better search
 const initialResources: Resource[] = [
@@ -221,110 +171,40 @@ const initialResources: Resource[] = [
   }
 ];
 
-type ResourceStore = {
+interface ResourceStore {
   resources: Resource[];
   searchTerm: string;
   categoryFilter: ResourceCategory | 'All';
-  isLoading: boolean;
-  
-  // Actions
   setSearchTerm: (term: string) => void;
   setCategoryFilter: (category: ResourceCategory | 'All') => void;
-  addResource: (resource: Omit<Resource, 'id' | 'createdAt' | 'updatedAt' | 'rating' | 'ratingsCount'>) => void;
-  updateResource: (id: string, data: Partial<Resource>) => void;
-  deleteResource: (id: string) => void;
-  rateResource: (resourceId: string, rating: number) => void;
-  
-  // Computed
   filteredResources: () => Resource[];
-};
+}
 
 export const useResourceStore = create<ResourceStore>((set, get) => ({
   resources: initialResources,
   searchTerm: '',
   categoryFilter: 'All',
-  isLoading: false,
-  
   setSearchTerm: (term) => set({ searchTerm: term }),
   setCategoryFilter: (category) => set({ categoryFilter: category }),
-  
-  addResource: (resource) => {
-    const now = new Date().toISOString();
-    const newResource: Resource = {
-      ...resource,
-      id: String(Math.floor(Math.random() * 10000)),
-      createdAt: now,
-      updatedAt: now,
-      rating: 0,
-      ratingsCount: 0,
-    };
-    
-    set((state) => ({
-      resources: [...state.resources, newResource]
-    }));
-  },
-  
-  updateResource: (id, data) => {
-    set((state) => ({
-      resources: state.resources.map((resource) => 
-        resource.id === id 
-          ? { ...resource, ...data, updatedAt: new Date().toISOString() } 
-          : resource
-      )
-    }));
-  },
-  
-  deleteResource: (id) => {
-    set((state) => ({
-      resources: state.resources.filter((resource) => resource.id !== id)
-    }));
-  },
-  
-  rateResource: (resourceId, rating) => {
-    set((state) => ({
-      resources: state.resources.map((resource) => {
-        if (resource.id === resourceId) {
-          const newRatingsCount = resource.ratingsCount + 1;
-          const newRating = ((resource.rating * resource.ratingsCount) + rating) / newRatingsCount;
-          
-          return {
-            ...resource,
-            rating: Number(newRating.toFixed(1)),
-            ratingsCount: newRatingsCount
-          };
-        }
-        return resource;
-      })
-    }));
-  },
-  
   filteredResources: () => {
     const { resources, searchTerm, categoryFilter } = get();
     const searchTermLower = searchTerm.toLowerCase();
-    
+
     return resources.filter((resource) => {
-      // Category filter
+      // Filter by category
       if (categoryFilter !== 'All' && resource.category !== categoryFilter) {
         return false;
       }
-      
+
+      // Filter by search term
       if (!searchTermLower) {
         return true;
       }
-      
-      // Check title and description
-      if (
+
+      return (
         resource.title.toLowerCase().includes(searchTermLower) ||
         resource.description.toLowerCase().includes(searchTermLower)
-      ) {
-        return true;
-      }
-      
-      // Check subject keywords
-      const keywords = SUBJECT_KEYWORDS[resource.category];
-      return keywords.some(keyword => 
-        searchTermLower.includes(keyword) || keyword.includes(searchTermLower)
       );
     });
-  }
+  },
 }));

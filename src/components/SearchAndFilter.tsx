@@ -39,12 +39,12 @@ const SearchAndFilter = ({ onSearch, onCategoryChange }: SearchAndFilterProps) =
 
     if (searchQuery) {
       setSearchTerm(searchQuery);
-      onSearch(searchQuery);
+      onSearch(searchQuery); // Ensure this is being called
     }
-    
+
     if (categoryQuery && categoryOptions.some(option => option.value === categoryQuery)) {
       setCategory(categoryQuery);
-      onCategoryChange(categoryQuery);
+      onCategoryChange(categoryQuery); // Ensure this is being called
     }
   }, [location.search, onSearch, onCategoryChange]);
   

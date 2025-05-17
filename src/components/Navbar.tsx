@@ -3,10 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, Menu, X, Search, Upload, User, LogOut } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  // add other properties as needed
+  isAdmin?: boolean;
+}
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { user, isAuthenticated, logout } = useAuthStore();
+  const { user, isAuthenticated, logout } = useAuthStore() as { user: User | null, isAuthenticated: boolean, logout: () => void };
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -87,6 +95,19 @@ const Navbar = () => {
                 >
                   Manage
                 </Link>
+                {isAuthenticated && user?.isAdmin && (
+                  <>
+                    <Link
+                      to="/admin"
+                      className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-purple-400"
+                    >
+                      Admin
+                    </Link>
+                    <script>
+                      console.log('Admin button rendered:', user?.isAdmin);
+                    </script>
+                  </>
+                )}
                 <div className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-300">
                   <User className="h-4 w-4" />
                   <span>{user?.name || 'User'}</span>
@@ -181,6 +202,15 @@ const Navbar = () => {
                 >
                   Manage
                 </Link>
+                {isAuthenticated && user?.isAdmin && (
+                  <Link
+                    to="/admin"
+                    className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-gray-800 rounded-md"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Admin
+                  </Link>
+                )}
                 <button
                   onClick={() => {
                     handleLogout();
