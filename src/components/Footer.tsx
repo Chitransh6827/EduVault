@@ -123,20 +123,6 @@ const Footer = () => {
             <p className="text-sm text-gray-400 mb-4 md:mb-0">
               &copy; {currentYear} EduVault. All rights reserved.
             </p>
-            <div className="flex space-x-6">
-              <Link to="/privacy" className="text-sm text-gray-400 hover:text-purple-400">
-                Privacy
-              </Link>
-              <Link to="/terms" className="text-sm text-gray-400 hover:text-purple-400">
-                Terms
-              </Link>
-              <Link to="/cookies" className="text-sm text-gray-400 hover:text-purple-400">
-                Cookies
-              </Link>
-              <Link to="/sitemap" className="text-sm text-gray-400 hover:text-purple-400">
-                Sitemap
-              </Link>
-            </div>
           </div>
         </div>
       </div>
