@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Mail, Github, Twitter, Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
+import { BookOpen, Twitter, Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
   return (
     <footer className="bg-gray-950 py-12 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,21 +84,6 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/careers" className="text-gray-400 hover:text-purple-400 text-sm">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link to="/partners" className="text-gray-400 hover:text-purple-400 text-sm">
-                  Partners
-                </Link>
-              </li>
-              <li>
-                <Link to="/press" className="text-gray-400 hover:text-purple-400 text-sm">
-                  Press Kit
-                </Link>
-              </li>
-              <li>
                 <Link to="/community" className="text-gray-400 hover:text-purple-400 text-sm">
                   Community
                 </Link>
@@ -110,11 +94,6 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-gray-200 mb-4">Support</h3>
             <ul className="space-y-2">
-              <li>
-                <Link to="/help" className="text-gray-400 hover:text-purple-400 text-sm">
-                  Help Center
-                </Link>
-              </li>
               <li>
                 <Link to="/faq" className="text-gray-400 hover:text-purple-400 text-sm">
                   FAQs
@@ -131,14 +110,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/accessibility" className="text-gray-400 hover:text-purple-400 text-sm">
-                  Accessibility
-                </Link>
-              </li>
-              <li>
-                <a href="mailto:support@eduvault.com" className="text-gray-400 hover:text-purple-400 text-sm">
+                <Link to="/contact" className="text-gray-400 hover:text-purple-400 text-sm">
                   Contact Support
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

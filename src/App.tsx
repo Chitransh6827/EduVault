@@ -14,6 +14,12 @@ import ManageResources from './pages/ManageResources';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Blog from './pages/Blog';
+import BlogDetails from './pages/BlogDetails';
+import Community from './pages/Community';
+import FAQs from './pages/FAQs';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 // Components
 import Layout from './components/Layout';
@@ -63,6 +69,12 @@ function App() {
             />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogDetails />} />
+            <Route path="community" element={<Community />} />
+            <Route path="faq" element={<FAQs />} />
+            <Route path="privacy" element={<PrivacyPolicy />} />
+            <Route path="terms" element={<TermsOfService />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
