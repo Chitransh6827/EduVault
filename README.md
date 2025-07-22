@@ -1,6 +1,4 @@
-# EduVault - Instructions
-
-This document provides essential context for AI agents working with the EduVault codebase.
+# EduVault 
 
 ## Project Overview
 
